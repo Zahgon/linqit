@@ -152,7 +152,7 @@ class List(list):
         :return: The sum of the values.
         :rtype: object
         """
-        return sum(self)
+        pass
 
     @property
     def min(self):
@@ -162,7 +162,7 @@ class List(list):
         :return: The lowest value.
         :rtype: object
         """
-        return min(self)
+        pass
 
     @property
     def max(self):
@@ -172,7 +172,7 @@ class List(list):
         :return: The highest value.
         :rtype: object
         """
-        return max(self)
+        pass
 
     @property
     def avg(self):
@@ -181,10 +181,7 @@ class List(list):
         :return: The average of the values.
         :rtype: float
         """
-        return reduce(
-            lambda x, y: x + y,
-            self,
-        ) / len(self)
+        pass
 
     @property
     def sorted(
@@ -196,7 +193,7 @@ class List(list):
         :return: A new sorted list.
         :rtype: List
         """
-        return sorted(self)
+        pass
 
     def all(
         self,
@@ -210,11 +207,7 @@ class List(list):
         :return: True if all objects satisfy the expression, False otherwise.
         :rtype: bool
         """
-        if self:
-            for i in self:
-                if not expression(i):
-                    return False
-        return True
+        pass
 
 
     def any(
@@ -229,11 +222,7 @@ class List(list):
         :return: True if any object satisfies the expression, False otherwise.
         :rtype: bool
         """
-        if self:
-            for i in self:
-                if expression(i):
-                    return True
-        return False  # for an empty iterable, all returns False!
+        pass
 
     def concat(self, second):
         """
@@ -244,7 +233,7 @@ class List(list):
         :return: A new List containing the concatenated items.
         :rtype: List
         """
-        return List(self + second)
+        pass
 
     def contains(self, item):
         """
@@ -254,7 +243,7 @@ class List(list):
         :return: True if the item is in the list, False otherwise.
         :rtype: bool
         """
-        return item in self
+        pass
 
     def distinct(
         self,
@@ -265,7 +254,7 @@ class List(list):
         :return: A new list with distinct items.
         :rtype: List
         """
-        return List(set(self))
+        pass
 
     def except_for(
         self,
@@ -279,12 +268,7 @@ class List(list):
         :return: A new List containing the filtered objects.
         :rtype: List
         """
-        return List(
-            filter(
-                lambda e: not expression(e),
-                self,
-            )
-        )
+        pass
 
     def first(
         self,
@@ -300,14 +284,7 @@ expression=_NO_EXPR, default=_NONE
         :rtype: object
         :raises IndexError: If no matching value is found and no default value is provided.
         """
-        if self:
-            for el in self:
-                if expression(el):
-                    return(el)
-        if default != _NONE:
-            return default
-        else:
-            raise IndexError('No matching values')
+        pass
 
 
     def get_by_attr(self, attr):
@@ -319,13 +296,7 @@ expression=_NO_EXPR, default=_NONE
         :return: A new List containing the objects with the attribute.
         :rtype: List
         """
-        try:
-            return getattr(
-                self,
-                attr,
-            )
-        except AttributeError:
-            return List()
+        pass
 
     def intersect(self, second):
         """
@@ -336,12 +307,7 @@ expression=_NO_EXPR, default=_NONE
         :return: A new List containing the intersecting objects.
         :rtype: List
         """
-        return List(
-            filter(
-                lambda e: e in second,
-                self,
-            )
-        )
+        pass
 
     def last(
         self,
@@ -358,10 +324,7 @@ expression=_NO_EXPR, default=_NONE
         :rtype: object
         :raises IndexError: If no matching value is found and no default value is provided.
         """
-        return List(reversed(self)).first(
-            expression,
-            default,
-        )
+        pass
 
     def order_by(
         self,
@@ -376,11 +339,7 @@ expression=_NO_EXPR, default=_NONE
         :return: A new sorted List.
         :rtype: List
         """
-        sorted_data = sorted(
-            self,
-            key=expression,
-        )
-        return List(sorted_data)
+        pass
 
     def select(
         self,
@@ -394,12 +353,7 @@ expression=_NO_EXPR, default=_NONE
         :return: A new List containing the transformed values.
         :rtype: List
         """
-        return List(
-            map(
-                expression,
-                self,
-            )
-        )
+        pass
 
     def skip(self, count):
         """
@@ -410,7 +364,7 @@ expression=_NO_EXPR, default=_NONE
         :return: A new List containing the remaining elements.
         :rtype: List
         """
-        return List(self[count:])
+        pass
 
     def take(self, count):
         """
@@ -421,9 +375,7 @@ expression=_NO_EXPR, default=_NONE
         :return: A new List containing the first n elements.
         :rtype: List
         """
-        if not self or count == 0:
-            return List()
-        return self[:count]
+        pass
 
     def where(self, expression=None, **filters):
         """
@@ -436,26 +388,7 @@ expression=_NO_EXPR, default=_NONE
         :return: A new List containing the filtered objects.
         :rtype: List
         """
-
-        def filter_function(
-            x,
-        ):
-            return (expression is None or expression(x)) and all(
-                [
-                    getattr(
-                        x,
-                        key,
-                    )
-                    == value
-                    for key, value in filters.items()
-                ]
-            )
-
-        selection = filter(
-            filter_function,
-            self,
-        )
-        return List(selection)
+        pass
 
     def of_type(self, _type):
         """
@@ -467,14 +400,4 @@ expression=_NO_EXPR, default=_NONE
         :rtype: List
         :raises TypeError: If the argument is not a type.
         """
-        if not isinstance(
-            _type,
-            type,
-        ):
-            raise TypeError("The argument must be a type")
-        return self.where(
-            lambda e: isinstance(
-                e,
-                _type,
-            )
-        )
+        pass
